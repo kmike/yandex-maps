@@ -21,3 +21,6 @@ stuff/
 #os files
 .DS_Store
 Thumbs.db
+
+#setup files
+build/
