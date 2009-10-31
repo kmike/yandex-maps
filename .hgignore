@@ -1,0 +1,23 @@
+syntax: glob
+
+#projects
+.settings/*
+.project
+.pydevproject
+.externalToolBuilders*
+.cache/*
+nbproject/*
+.buildpath
+build.properties
+MANIFEST.MF
+
+#temp files
+*.pyc
+*.pyo
+*.orig
+*~
+stuff/
+
+#os files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{{ address }}</title>
+    </head>
+    <body>
+        <div id="YMapsID" style="width:600px;height:600px"></div>
+        <script src="http://api-maps.yandex.ru/1.1/index.xml?key={{ api_key }}" type="text/javascript"></script>
+        <script type="text/javascript">
+            window.onload = function () {
+                var map = new YMaps.Map(document.getElementById("YMapsID"));
+                var map_center = new YMaps.GeoPoint({{ longtitude }}, {{ latitude }});
+                map.setCenter(map_center, {{ detail }});
+                map.openBalloon(map_center, "{{ address }}");
+
+                map.addControl(new YMaps.ToolBar());
+                map.addControl(new YMaps.Zoom());
+                map.addControl(new YMaps.ScaleLine());
+            }
+        </script>
+    </body>
+</html>
