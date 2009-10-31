@@ -1,2 +1,3 @@
-include photo_albums/locale/en/LC_MESSAGES/*
-include photo_albums/locale/ru/LC_MESSAGES/*
+include yandex_maps/fixtures/*
+include yandex_maps/migrations/*
+include yandex_maps/templates/*
