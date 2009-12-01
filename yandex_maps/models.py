@@ -17,10 +17,11 @@ class MapAndAddress(models.Model):
         return 5
 
     def get_map_url(self, width=None, height=None, detail_level = 5):
-        w = width if width else settings.YANDEX_MAPS_W
-        h = height if height else settings.YANDEX_MAPS_H
+        w = int(width) if width else settings.YANDEX_MAPS_W
+        h = int(height) if height else settings.YANDEX_MAPS_H
+        detail_level = int(detail_level) or self.get_detail_level()
         if YANDEX_KEY is not None:
-            return utils.get_map_url(YANDEX_KEY, self.longtitude, self.latitude, self.get_detail_level(), w, h)
+            return utils.get_map_url(YANDEX_KEY, self.longtitude, self.latitude, detail_level, w, h)
         else:
             return ''
 

@@ -3,14 +3,14 @@ from distutils.core import setup
 
 setup(
       name='django-yandex-maps',
-      version='0.1',
+      version='0.2',
       author='Mikhail Korobov',
       author_email='kmike84@gmail.com',
       url='http://bitbucket.org/kmike/django-yandex-maps/',
 
       description = 'Django app for work with Yandex Maps service.',
       license = 'MIT license',
-      packages=['yandex_maps'],
+      packages=['yandex_maps', 'yandex_maps.templatetags'],
 
       package_data={'yandex_maps': ['templates/yandex_maps/*']},
 
