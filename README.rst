@@ -7,5 +7,5 @@ django-yandex-maps
 Лицензия MIT.
 
 Для работы в settings.py нужно добавить переменную YANDEX_MAPS_API_KEY
-со своим ключом API от яндекса. Для работы нужна также библиотека BeautifulSoup.
+со своим ключом API от яндекса.
 

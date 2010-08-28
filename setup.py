@@ -12,13 +12,13 @@ setup(
       author_email='kmike84@gmail.com',
       url='http://bitbucket.org/kmike/django-yandex-maps/',
 
-      description = 'Django app for work with Yandex Maps service.',
+      description = 'Django app for Yandex Maps integration.',
       license = 'MIT license',
       packages=['yandex_maps', 'yandex_maps.templatetags'],
 
       package_data={'yandex_maps': ['templates/yandex_maps/*']},
 
-      requires = ['django (>=1.0)', 'BeautifulSoup'],
+      requires = ['django (>=1.0)'],
       long_description = open('README.rst').read().decode('utf8'),
 
       classifiers=[

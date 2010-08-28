@@ -1,7 +1,6 @@
 #coding: utf-8
-
-from BeautifulSoup import BeautifulSoup
-import urllib
+import xml.dom.minidom
+import urllib2
 from django.utils.http import urlencode
 
 def get_map_url(API_key, longtitude, latitude, zoom, width, height):
@@ -12,14 +11,17 @@ def get_map_url(API_key, longtitude, latitude, zoom, width, height):
 def geocode(API_key, address):
     url = u'http://geocode-maps.yandex.ru/1.x/?'
     params = urlencode({'geocode':address,'key':API_key})
-
     try:
-        response = urllib.urlopen(url+params).read()
+        response = urllib2.urlopen(url+params).read()
     except IOError:
         return (None, None,)
+    return _parse_response(response)
 
+def _parse_response(response):
     try:
-        data = BeautifulSoup(response).find('pos').string.split()
-    except AttributeError:
-        data = (None,None,)
-    return data
+        dom = xml.dom.minidom.parseString(response)
+        pos_elem = dom.getElementsByTagName('pos')[0]
+        pos_data = pos_elem.childNodes[0].data
+        return pos_data.split()
+    except IndexError:
+        return None, None
