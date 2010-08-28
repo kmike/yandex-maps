@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 from distutils.core import setup
 
+# hack for utf8 long_description support
+import sys
+reload(sys).setdefaultencoding("UTF-8")
+
 setup(
       name='django-yandex-maps',
       version='0.2',
@@ -15,6 +19,7 @@ setup(
       package_data={'yandex_maps': ['templates/yandex_maps/*']},
 
       requires = ['django (>=1.0)', 'BeautifulSoup'],
+      long_description = open('README.rst').read().decode('utf8'),
 
       classifiers=[
           'Development Status :: 3 - Alpha',

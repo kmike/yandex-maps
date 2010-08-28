@@ -8,7 +8,6 @@ from yandex_maps import utils
 YANDEX_KEY = getattr(settings, 'YANDEX_MAPS_API_KEY', None)
 
 class MapAndAddress(models.Model):
-
     address = models.CharField(u'Адрес', max_length=300, blank=True)
     longtitude = models.FloatField(u'Долгота', null=True, blank=True)
     latitude = models.FloatField(u'Широта', null=True, blank=True)
@@ -27,7 +26,7 @@ class MapAndAddress(models.Model):
 
     def fill_geocode_data(self):
         if YANDEX_KEY is not None:
-            (self.longtitude, self.latitude) = utils.geocode(settings.YANDEX_MAPS_API_KEY, smart_str(self.address))
+            self.longtitude, self.latitude = utils.geocode(settings.YANDEX_MAPS_API_KEY, smart_str(self.address))
 
     def save(self, *args, **kwargs):
         if self.pk or (self.longtitude is None) or (self.latitude is None): # don't fill geocode data if it is known already
