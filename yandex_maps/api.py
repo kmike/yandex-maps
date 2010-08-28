@@ -9,7 +9,7 @@ from yandex_maps import http
 STATIC_MAPS_URL = 'http://static-maps.yandex.ru/1.x/?'
 GEOCODE_URL = 'http://geocode-maps.yandex.ru/1.x/?'
 
-def get_map_url(API_key, longtitude, latitude, zoom, width, height):
+def get_map_url(api_key, longtitude, latitude, zoom, width, height):
     ''' returns URL of static yandex map '''
     params = [
        'll=%0.7f,%0.7f' % (longtitude, latitude,),
@@ -17,15 +17,15 @@ def get_map_url(API_key, longtitude, latitude, zoom, width, height):
        'z=%d' % zoom,
        'l=map',
        'pt=%0.7f,%0.7f' % (longtitude, latitude,),
-       'key=%s' % API_key
+       'key=%s' % api_key
     ]
     return STATIC_MAPS_URL + '&'.join(params)
 
-def geocode(API_key, address, timeout=2):
+def geocode(api_key, address, timeout=2):
     ''' returns (longtitude, latitude,) tuple for given address '''
     if isinstance(address, unicode):
         address = address.encode('utf8')
-    params = urllib.urlencode({'geocode': address, 'key': API_key})
+    params = urllib.urlencode({'geocode': address, 'key': api_key})
     url = GEOCODE_URL + params
     try:
         status_code, response = http.request('GET', url, timeout=timeout)
