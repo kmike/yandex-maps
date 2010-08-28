@@ -1,6 +1,6 @@
 # coding: utf-8
 
-# Yandex maps API wrapper. Can be used without Django.
+# Yandex maps API wrapper.
 
 import xml.dom.minidom
 import urllib
