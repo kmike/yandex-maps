@@ -34,8 +34,8 @@ yandex-maps
 ===================
 
 1. В settings.py добавляем переменную YANDEX_MAPS_API_KEY со
-своим API-ключом от Яндекса. Ключ можно получить тут:
-http://api.yandex.ru/maps/form.xml/
+   своим API-ключом от Яндекса. Ключ можно получить тут:
+   http://api.yandex.ru/maps/form.xml/
 
 2. 'yandex_maps' добавляем в INSTALLED_APPS
 
