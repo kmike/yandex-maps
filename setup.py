@@ -5,7 +5,7 @@ from distutils.core import setup
 import sys
 reload(sys).setdefaultencoding("UTF-8")
 
-version='0.5'
+version='0.5.1'
 
 setup(
     name = 'yandex-maps',

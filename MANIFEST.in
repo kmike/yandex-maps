@@ -1,3 +1,7 @@
-include yandex_maps/fixtures/*
-include yandex_maps/migrations/*
-include yandex_maps/templates/*
+include *.txt
+include *.rst
+
+exclude yandex_maps/my_tests.py
+
+recursive-include yandex_maps *.html
+recursive-include yandex_maps_tests *.html *.py
