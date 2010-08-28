@@ -81,5 +81,5 @@ class GeocodeParsingTest(TestCase):
 
 class MapUrlTest(TestCase):
     def test_map_url(self):
-        url = get_map_url(TEST_API_KEY, float(COORDS[0]), float(COORDS[1]), 5, 200, 300)
+        url = get_map_url(TEST_API_KEY, COORDS[0], COORDS[1], 5, 200, 300)
         self.assertEqual(url, MAP_URL)
