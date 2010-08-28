@@ -8,7 +8,7 @@ from yandex_maps import api
 YANDEX_KEY = getattr(settings, 'YANDEX_MAPS_API_KEY', None)
 
 class MapAndAddress(models.Model):
-    address = models.CharField(u'Адрес', max_length=255, blank=True)
+    address = models.CharField(u'Адрес', max_length=255, blank=True, db_index=True)
     longtitude = models.FloatField(u'Долгота', null=True, blank=True)
     latitude = models.FloatField(u'Широта', null=True, blank=True)
 

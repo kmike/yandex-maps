@@ -9,4 +9,8 @@ ROOT_URLCONF = 'urls'
 TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, 'templates'),)
 
 YANDEX_MAPS_API_KEY = 'sdfkjhg'
-INSTALLED_APPS=('yandex_maps', 'test_app')
+INSTALLED_APPS=(
+    'yandex_maps',
+    'test_app',
+#    'south'
+)
