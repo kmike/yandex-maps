@@ -40,6 +40,6 @@ def _get_coords(response):
         dom = xml.dom.minidom.parseString(response)
         pos_elem = dom.getElementsByTagName('pos')[0]
         pos_data = pos_elem.childNodes[0].data
-        return pos_data.split()
+        return tuple(pos_data.split())
     except IndexError:
         return None, None

@@ -68,7 +68,7 @@ UNKNOWN_ADDRESS = u'''<?xml version="1.0" encoding="utf-8"?>
 '''.encode('utf8')
 
 TEST_API_KEY = 'vasia'
-COORDS = [u'60.603826', u'56.854581']
+COORDS = (u'60.603826', u'56.854581')
 MAP_URL = 'http://static-maps.yandex.ru/1.x/?ll=60.6038260,56.8545810&size=200,300&z=5&l=map&pt=60.6038260,56.8545810&key=vasia'
 
 class GeocodeParsingTest(TestCase):
