@@ -5,31 +5,32 @@ from distutils.core import setup
 import sys
 reload(sys).setdefaultencoding("UTF-8")
 
+version='0.5'
+
 setup(
-      name='yandex-maps',
-      version='0.5',
-      author='Mikhail Korobov',
-      author_email='kmike84@gmail.com',
-      url='http://bitbucket.org/kmike/django-yandex-maps/',
+    name = 'yandex-maps',
+    version = version,
+    author = 'Mikhail Korobov',
+    author_email = 'kmike84@gmail.com',
+    url = 'http://bitbucket.org/kmike/yandex-maps/',
+    download_url = 'http://bitbucket.org/kmike/yandex-maps/get/tip.zip',
 
-      description = 'Yandex.Maps API python wrapper with optional django integration.',
-      license = 'MIT license',
-      packages=['yandex_maps', 'yandex_maps.templatetags'],
+    description = 'Yandex.Maps API python wrapper with optional django integration.',
+    long_description = open('README.rst').read().decode('utf8'),
+    license = 'MIT license',
+    requires = ['django (>=1.0)'],
 
-      package_data={'yandex_maps': ['templates/yandex_maps/*']},
+    packages=['yandex_maps', 'yandex_maps.templatetags', 'yandex_maps.migrations'],
+    package_data={'yandex_maps': ['templates/yandex_maps/*']},
 
-      requires = ['django (>=1.0)'],
-      long_description = open('README.rst').read().decode('utf8'),
-
-      classifiers=[
-          'Development Status :: 4 - Beta',
-          'Environment :: Plugins',
-          'Framework :: Django',
-          'Intended Audience :: Developers',
-          'License :: OSI Approved :: MIT License',
-          'Natural Language :: English',
-          'Natural Language :: Russian',
-          'Programming Language :: Python',
-          'Topic :: Software Development :: Libraries :: Python Modules'
-      ],
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Framework :: Django',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Natural Language :: English',
+        'Natural Language :: Russian',
+        'Programming Language :: Python',
+        'Topic :: Software Development :: Libraries :: Python Modules'
+    ],
 )
