@@ -26,3 +26,6 @@ Thumbs.db
 build/
 dist/
 MANIFEST
+
+#my files
+my_tests.py

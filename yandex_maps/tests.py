@@ -1,6 +1,6 @@
 #coding: utf-8
 from unittest import TestCase
-from yandex_maps.utils import _parse_response
+from yandex_maps.api import _get_coords, get_map_url
 
 RESPONSE = u"""<?xml version="1.0" encoding="utf-8"?>
 <ymaps xmlns="http://maps.yandex.ru/ymaps/1.x" xmlns:x="http://www.yandex.ru/xscript">
@@ -67,10 +67,19 @@ UNKNOWN_ADDRESS = u'''<?xml version="1.0" encoding="utf-8"?>
 </ymaps>
 '''.encode('utf8')
 
-class GeocodeParsingTest(TestCase):
+TEST_API_KEY = 'vasia'
+COORDS = [u'60.603826', u'56.854581']
+MAP_URL = 'http://static-maps.yandex.ru/1.x/?ll=60.6038260,56.8545810&size=200,300&z=5&l=map&pt=60.6038260,56.8545810&key=vasia'
 
+class GeocodeParsingTest(TestCase):
     def test_parsing(self):
-        self.assertEqual(_parse_response(RESPONSE), [u'60.603826', u'56.854581'])
+        self.assertEqual(_get_coords(RESPONSE), COORDS)
 
     def test_unknown(self):
-        self.assertEqual(_parse_response(UNKNOWN_ADDRESS), (None, None,))
+        self.assertEqual(_get_coords(UNKNOWN_ADDRESS), (None, None,))
+
+
+class MapUrlTest(TestCase):
+    def test_map_url(self):
+        url = get_map_url(TEST_API_KEY, float(COORDS[0]), float(COORDS[1]), 5, 200, 300)
+        self.assertEqual(url, MAP_URL)
