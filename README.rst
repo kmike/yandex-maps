@@ -33,16 +33,16 @@ yandex-maps
 Интеграция с django
 ===================
 
-1. В settings.py нужно добавить переменную YANDEX_MAPS_API_KEY со
+1. В settings.py добавляем переменную YANDEX_MAPS_API_KEY со
 своим API-ключом от Яндекса. Ключ можно получить тут:
 http://api.yandex.ru/maps/form.xml/
 
-2. Добавить 'yandex_maps' в INSTALLED_APPS
+2. 'yandex_maps' добавляем в INSTALLED_APPS
 
-3. Выполнить ``./manage.py syncdb`` (или ``./manage.py migrate``,
+3. Выполняем ``./manage.py syncdb`` (или ``./manage.py migrate``,
    если используется south)
 
-3. В шаблоне теперь можно использовать тег yandex_map::
+4. В шаблоне теперь можно использовать тег ``yandex_map``::
 
            {% load yandex_maps_tags %}
 
