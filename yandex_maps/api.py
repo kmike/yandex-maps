@@ -1,6 +1,8 @@
 # coding: utf-8
 
-# Yandex maps API wrapper.
+"""
+Yandex.Maps API wrapper
+"""
 
 import xml.dom.minidom
 import urllib

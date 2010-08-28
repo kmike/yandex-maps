@@ -12,7 +12,7 @@ setup(
       author_email='kmike84@gmail.com',
       url='http://bitbucket.org/kmike/django-yandex-maps/',
 
-      description = 'Yandex Maps API python wrapper with optional Django integration.',
+      description = 'Yandex.Maps API python wrapper with optional django integration.',
       license = 'MIT license',
       packages=['yandex_maps', 'yandex_maps.templatetags'],
 
