@@ -1,0 +1,7 @@
+<html>
+    <body>
+        {% load yandex_maps_tags %}
+        <img src='{{ "Санкт-Петербург, ул. Бумажная 4"|static_map_url:"300,200,13" }}'>
+        {% yandex_map "Екатеринбург, Мира 32" 300 400 %}
+    </body>
+</html>

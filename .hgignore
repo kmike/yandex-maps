@@ -29,3 +29,4 @@ MANIFEST
 
 #my files
 my_tests.py
+db.sqlite
