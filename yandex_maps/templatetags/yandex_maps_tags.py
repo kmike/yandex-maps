@@ -28,7 +28,7 @@ def static_map_url(address, params=None):
 
 
 @register.simple_tag
-def yandex_map(address, width, height, zoom = 14):
+def yandex_map(address, width, height, zoom = 14, attrs=''):
     '''Тег, который выводит <img> с картой.
 
     Параметры:
@@ -44,5 +44,5 @@ def yandex_map(address, width, height, zoom = 14):
 
     '''
     url = _url_for(address, width, height, zoom)
-    return "<img src='%s' width='%s' height='%s' alt='%s' />" % (
-             url, width, height, conditional_escape(address))
+    return "<img src='%s' width='%s' height='%s' alt='%s' %s />" % (
+             url, width, height, conditional_escape(address), attrs)
