@@ -32,12 +32,15 @@ def geocode(api_key, address, timeout=2):
         return None, None
 
 def _get_geocode_xml(api_key, address, timeout=2):
+    url = _get_geocode_url(api_key, address)
+    status_code, response = http.request('GET', url, timeout=timeout)
+    return response
+
+def _get_geocode_url(api_key, address):
     if isinstance(address, unicode):
         address = address.encode('utf8')
     params = urllib.urlencode({'geocode': address, 'key': api_key})
-    url = GEOCODE_URL + params
-    status_code, response = http.request('GET', url, timeout=timeout)
-    return response
+    return GEOCODE_URL + params
 
 def _get_coords(response):
     try:
