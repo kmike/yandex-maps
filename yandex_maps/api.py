@@ -25,15 +25,19 @@ def get_map_url(api_key, longtitude, latitude, zoom, width, height):
 
 def geocode(api_key, address, timeout=2):
     ''' returns (longtitude, latitude,) tuple for given address '''
+    try:
+        xml = _get_geocode_xml(api_key, address, timeout)
+        return _get_coords(xml)
+    except IOError:
+        return None, None
+
+def _get_geocode_xml(api_key, address, timeout=2):
     if isinstance(address, unicode):
         address = address.encode('utf8')
     params = urllib.urlencode({'geocode': address, 'key': api_key})
     url = GEOCODE_URL + params
-    try:
-        status_code, response = http.request('GET', url, timeout=timeout)
-    except IOError:
-        return None, None
-    return _get_coords(response)
+    status_code, response = http.request('GET', url, timeout=timeout)
+    return response
 
 def _get_coords(response):
     try:
