@@ -11,14 +11,14 @@ from yandex_maps import http
 STATIC_MAPS_URL = 'http://static-maps.yandex.ru/1.x/?'
 GEOCODE_URL = 'http://geocode-maps.yandex.ru/1.x/?'
 
-def get_map_url(api_key, longtitude, latitude, zoom, width, height):
+def get_map_url(api_key, longitude, latitude, zoom, width, height):
     ''' returns URL of static yandex map '''
     params = [
-       'll=%0.7f,%0.7f' % (float(longtitude), float(latitude),),
+       'll=%0.7f,%0.7f' % (float(longitude), float(latitude),),
        'size=%d,%d' % (width, height,),
        'z=%d' % zoom,
        'l=map',
-       'pt=%0.7f,%0.7f' % (float(longtitude), float(latitude),),
+       'pt=%0.7f,%0.7f' % (float(longitude), float(latitude),),
        'key=%s' % api_key
     ]
     return STATIC_MAPS_URL + '&'.join(params)

@@ -10,7 +10,7 @@
         <script type="text/javascript">
             window.onload = function () {
                 var map = new YMaps.Map(document.getElementById("YMapsID"));
-                var map_center = new YMaps.GeoPoint({{ longtitude }}, {{ latitude }});
+                var map_center = new YMaps.GeoPoint({{ longitude }}, {{ latitude }});
                 map.setCenter(map_center, {{ detail }});
                 map.openBalloon(map_center, "{{ address }}");
 
