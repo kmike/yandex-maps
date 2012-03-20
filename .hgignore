@@ -26,6 +26,7 @@ Thumbs.db
 build/
 dist/
 MANIFEST
+.tox
 
 #my files
 my_tests.py
