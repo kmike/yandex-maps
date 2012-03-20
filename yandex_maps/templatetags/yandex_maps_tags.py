@@ -1,10 +1,14 @@
 #coding: utf-8
 from django import template
+from django.contrib.gis.geos import Point
 from django.utils.html import conditional_escape
-from yandex_maps.models import MapAndAddress
+from yandex_maps.models import MapAndAddress, get_static_map_url
 register = template.Library()
 
 def _url_for(address, *args, **kwargs):
+    if isinstance(address, Point):
+        return get_static_map_url(address.x, address.y, *args, **kwargs)
+
     if not isinstance(address, MapAndAddress):
         address, created = MapAndAddress.objects.get_or_create(address=address)
     try:
@@ -15,7 +19,9 @@ def _url_for(address, *args, **kwargs):
 @register.filter
 def static_map_url(address, params=None):
     '''Фильтр, который возвращает URL картинки с картой.
-    Можно применять к объекту класса MapAndAddress или к строке с адресом.
+    Можно применять к объекту класса MapAndAddress, к строке с адресом
+    или к экземпляру Point из GeoDjango (например, PointField с координатами).
+
     Параметры: ширина, высота, уровень детализации - через запятую без пробелов.
 
     Пример:
@@ -33,7 +39,7 @@ def yandex_map(address, width, height, zoom = 14, attrs=''):
 
     Параметры:
 
-        1. адрес (строка или объект класса MapAndAddress)
+        1. адрес (строка с адресом, объект класса MapAndAddress или Point из GeoDjango)
         2. ширина
         3. высота
         4. уровень детализации (по умолчанию = 14)

@@ -5,6 +5,16 @@ from yandex_maps import api
 
 YANDEX_KEY = getattr(settings, 'YANDEX_MAPS_API_KEY', None)
 
+def get_static_map_url(longitude, latitude, width=None, height=None, detail_level=14):
+    """
+    Возвращает адрес статичной карты с учетом настроек в settings.py
+    """
+    w = int(width) if width else settings.YANDEX_MAPS_W
+    h = int(height) if height else settings.YANDEX_MAPS_H
+    detail_level = int(detail_level)
+    return api.get_map_url(YANDEX_KEY, longitude, latitude, detail_level, w, h)
+
+
 class MapAndAddress(models.Model):
     address = models.CharField(u'Адрес', max_length=255, blank=True, db_index=True)
     longitude = models.FloatField(u'Долгота', null=True, blank=True)
@@ -14,14 +24,9 @@ class MapAndAddress(models.Model):
         return 5
 
     def get_map_url(self, width=None, height=None, detail_level = 5):
-        w = int(width) if width else settings.YANDEX_MAPS_W
-        h = int(height) if height else settings.YANDEX_MAPS_H
-        detail_level = int(detail_level) or self.get_detail_level()
-
-        if YANDEX_KEY is not None:
-            return api.get_map_url(YANDEX_KEY, self.longitude, self.latitude, detail_level, w, h)
-        else:
-            return ''
+        if YANDEX_KEY is None:
+            return ""
+        return get_static_map_url(self.longitude, self.latitude, width, height, detail_level)
 
     def fill_geocode_data(self):
         if YANDEX_KEY is not None:
