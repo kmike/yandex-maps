@@ -79,6 +79,7 @@ class GeocodeParsingTest(TestCase):
         self.assertEqual(_get_coords(UNKNOWN_ADDRESS), (None, None,))
 
 
+# FIXME: тест полагается на порядок параметров в url
 class MapUrlTest(TestCase):
     def test_map_url(self):
         url = get_map_url(TEST_API_KEY, COORDS[0], COORDS[1], 5, 200, 300)

@@ -9,19 +9,38 @@ import urllib
 from yandex_maps import http
 
 STATIC_MAPS_URL = 'http://static-maps.yandex.ru/1.x/?'
+HOSTED_MAPS_URL = 'http://maps.yandex.ru/?'
 GEOCODE_URL = 'http://geocode-maps.yandex.ru/1.x/?'
+
+def _format_point(longitude, latitude):
+    return '%0.7f,%0.7f' % (float(longitude), float(latitude),)
 
 def get_map_url(api_key, longitude, latitude, zoom, width, height):
     ''' returns URL of static yandex map '''
+    point = _format_point(longitude, latitude)
     params = [
-       'll=%0.7f,%0.7f' % (float(longitude), float(latitude),),
+       'll=%s' % point,
        'size=%d,%d' % (width, height,),
        'z=%d' % zoom,
        'l=map',
-       'pt=%0.7f,%0.7f' % (float(longitude), float(latitude),),
+       'pt=%s' % point,
        'key=%s' % api_key
     ]
     return STATIC_MAPS_URL + '&'.join(params)
+
+
+def get_external_map_url(longitude, latitude, zoom=14):
+    ''' returns URL of hosted yandex map '''
+    point = _format_point(longitude, latitude)
+    params = dict(
+        ll = point,
+        pt = point,
+        l = 'map',
+    )
+    if zoom is not None:
+        params['z'] = zoom
+    return HOSTED_MAPS_URL + urllib.urlencode(params)
+
 
 def geocode(api_key, address, timeout=2):
     ''' returns (longtitude, latitude,) tuple for given address '''

@@ -3,18 +3,29 @@ from django import template
 from django.contrib.gis.geos import Point
 from django.utils.html import conditional_escape
 from yandex_maps.models import MapAndAddress, get_static_map_url
+from yandex_maps.api import get_external_map_url
+
 register = template.Library()
 
-def _url_for(address, *args, **kwargs):
+# FIXME: этот код ужасен :)
+
+def _url_for(address, external, *args, **kwargs):
     if isinstance(address, Point):
-        return get_static_map_url(address.x, address.y, *args, **kwargs)
+        if external:
+            return get_external_map_url(address.x, address.y, *args, **kwargs)
+        else:
+            return get_static_map_url(address.x, address.y, *args, **kwargs)
 
     if not isinstance(address, MapAndAddress):
         address, created = MapAndAddress.objects.get_or_create(address=address)
     try:
-        return address.get_map_url(*args, **kwargs)
-    except:
+        if external:
+            return address.get_external_map_url(*args, **kwargs)
+        else:
+            return address.get_map_url(*args, **kwargs)
+    except Exception:
         return ''
+
 
 @register.filter
 def static_map_url(address, params=None):
@@ -30,7 +41,22 @@ def static_map_url(address, params=None):
 
     '''
     data = [] if params is None else params.split(",")
-    return _url_for(address, *data)
+    return _url_for(address, False, *data)
+
+@register.filter
+def external_map_url(address, zoom=None):
+    '''Фильтр, который возвращает URL карты у яндекса.
+    Можно применять к объекту класса MapAndAddress, к строке с адресом
+    или к экземпляру Point из GeoDjango (например, PointField с координатами).
+
+    Принимает 1 необязательный параметр: уровень детализации.
+
+    Пример:
+
+        <a href='{{ address|external_map_url }}' target='_blank'>посмотреть карту</a>
+
+    '''
+    return _url_for(address, True, zoom)
 
 
 @register.simple_tag

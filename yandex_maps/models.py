@@ -28,6 +28,9 @@ class MapAndAddress(models.Model):
             return ""
         return get_static_map_url(self.longitude, self.latitude, width, height, detail_level)
 
+    def get_external_map_url(self, detail_level=14):
+        return api.get_external_map_url(self.longitude, self.latitude, detail_level)
+
     def fill_geocode_data(self):
         if YANDEX_KEY is not None:
             self.longitude, self.latitude = api.geocode(settings.YANDEX_MAPS_API_KEY, self.address)
