@@ -75,6 +75,6 @@ def yandex_map(address, width, height, zoom=14, attrs=''):
         {% yandex_map "Санкт-Петербург, ул. Бумажная 4" 300 200 8 %}
 
     '''
-    url = _url_for(address, width, height, zoom)
+    url = _url_for(address, False, width, height, zoom)
     return "<img src='%s' width='%s' height='%s' alt='%s' %s />" % (
              url, width, height, conditional_escape(address), attrs)
