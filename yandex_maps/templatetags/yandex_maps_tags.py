@@ -60,7 +60,7 @@ def external_map_url(address, zoom=None):
 
 
 @register.simple_tag
-def yandex_map(address, width, height, zoom = 14, attrs=''):
+def yandex_map(address, width, height, zoom=14, attrs=''):
     '''Тег, который выводит <img> с картой.
 
     Параметры:
